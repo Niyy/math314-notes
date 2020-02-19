@@ -1,0 +1,39 @@
+---
+title: "notes17-02-20"
+author: "Austin Meyer"
+date: "2/17/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Expected value
+
+```{r}
+N <- 1000
+x <- sample(1:6), N, replace=TRUE)
+
+mean(x)
+
+unique(x)
+
+# Gives the estimates of each values probabilities
+fhat <- prop.table(table(x))
+
+ux <- 1:6
+
+# Vectorization multiplication
+sum(ux * fhat)
+mean(x)
+
+df <- data.frame(prop.table(table(x)))
+ggplot(df< aes(x, Freq)) + geom_line()
+```
+
+Probability density fucntion - expectide value is where all your data is balanced out. If you have values 1,6 equally weighted it would be at point 3.5.
+
+If you weighted 6 heavier than the other numbers you would have to move your value over as well.
+
+

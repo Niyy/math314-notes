@@ -1,0 +1,31 @@
+---
+title: "notes-29-jan"
+author: "Austin Meyer"
+date: "1/29/2020"
+output: html_document
+---
+
+```{r setubp, include=FALSE}
+knitr::opts_chunck$set(echo = TRUE)
+```
+
+Catch up from last class.
+```{r}
+n <- 1001
+idx <- 1:1001 #index of flips
+x <- sample(0:1, N, replace = TRUE)
+head(x)
+tail(x)
+cm <- cumsum(x) / idx
+```
+
+Create a data.frame to make graph pretty with ggplot.
+```{r}
+df <- data.frame(index = idx, x = x, cumulative_mean = cm)
+ggplot(df, aes(idx, cumulative_mean)) + geom_line()
+```
+
+When ever you Knit it will make a new R output
+
+# What to do for homeworks
+   You will be doing it in Rmark down(.Rmd) files. Your homeworks will be turned in as html (preferably), but will except pdfs.

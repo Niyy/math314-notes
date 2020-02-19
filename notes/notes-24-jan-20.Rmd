@@ -1,0 +1,22 @@
+---
+title: "R review"
+author: "Austin Meyer"
+date: "1/24/2020"
+output: html_document
+---
+
+## What to think about when learning a new language
+* syntax
+* keywords
+* numerical computing, built into language
+* declaration
+* functions
+* libraries
+* conditionals
+* loops
+
+## Definitions
+Variatic Function:
+  - A function that takes in anynumber of parameters.
+  
+Vectorized addit

@@ -1,0 +1,52 @@
+---
+title: "notes-19-02-20"
+output: html_notebook
+---
+
+# Variation
+
+```{r}
+y <- 1:9
+fy <- 1/9
+Ey <- sum( y * fy )
+
+head(Ey) # This is the middle of the uniform
+
+# This version the density function was generated as a vector
+fy <- rep(1/9, 9)
+Ey <- sum(y * fy)
+
+head(Ey)
+```
+
+Next we will use the variance function
+```{r}
+# Look it is the density function
+Vy <- (y - Ey)^2
+Vy <- Vy * fy
+
+head(Vy)
+
+# Now do it through the sum
+Vy <- sum(Vy)
+
+head(Vy)
+
+find_variance <- function(y = 1:6, fy = 1/9)
+{
+  Ey <- sum( y * fy )
+  Vy <- sum( (y-Ey)^2 * fy)
+  
+  Vy
+}
+```
+
+Lets use this function. This is the expected value.
+```{r}
+Vy <- find_variance(y, fy)
+Vx <- find_variance(y = 1:6, fy = 1/6)
+
+head(Vy)
+head(Vx)
+```
+
