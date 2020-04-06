@@ -1,0 +1,39 @@
+---
+title: "intro-sampling-distro"
+author: "Austin Meyer"
+date: "4/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+install.packages("gridExtra")
+
+library(ggplot2)
+library(gridExtra)
+```
+
+
+```{r}
+R <- 501
+N <- 1001
+
+samplemeans <- rep(NA, R)
+
+for(r in 1:R)
+{
+  samplemeans[r] <- mean(rexp(N))
+}
+
+
+df <- data.frame(x = samplemeans)
+plot_samplingdist <- ggplot(df, aes(x)) + geom_density()
+
+
+plot_samplingdist
+plot_population
+
+grid.arrange(plot_population, plot_samplingdist, nrow=2)
+```
+
+

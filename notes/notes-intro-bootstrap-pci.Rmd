@@ -1,0 +1,60 @@
+---
+title: "notes-intro-bootstrap-pci"
+author: "Austin Meyer"
+date: "4/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+Lets go ahead and make a sample of samplemeans from a gamma(2, 3)
+
+```{r}
+N <- 3140
+x <- rgamma(N, 2, 3)
+R <- 1001
+
+samplesds <- rep(NA, R)
+samplemeans <- rep(NA, R)
+
+for(r in 1:R)
+{
+  idx <- sample(N, N, replace=TRUE)
+  samplesds[r] <- sd(x[idx])
+  
+  ## Find sample means
+  samplemeans[r] <- mean(rgamma(N, 2, 3))
+}
+```
+
+No lets look at what these notes are actually about.
+
+```{r}
+## From one sample of N Gamma(2, 3) RVs
+## R bootstrap resampled means
+head(samplemeans)
+
+dfm <- data.frame(x = samplemeans)
+ggplot(dfm, aes(x)) + geom_density()
+
+quantile(samplemeans, c(0.1, 0.9))
+```
+
+We are 80% confident that the true population mean is between 0.65 and 0.68
+
+```{r}
+## R bootstrap resamples standard deviations
+head(samplesds)
+
+dfs <- data.frame(x = samplesds)
+ggplot(dfs, aes(x)) + geom_density()
+
+quantile(samplesds, c(0.025, 0.975))
+```
+
+We are 95% confident that the true population standard deviation is between 0.47 and 0.51
+
+

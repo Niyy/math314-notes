@@ -1,0 +1,29 @@
+---
+title: "notes-likelihood-optim"
+author: "Austin Meyer"
+date: "4/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+df <- read.csv("https://raw.githubusercontent.com/roualdes/data/master/droughts.csv")
+
+ll_exponential <- function(lambda, x)
+{
+  N <- length(x)
+  
+  -1 * N * log(lambda) + lambda * sum(x)
+}
+
+optim(2, ll_exponential, method="L-BFGS-B", lower=0.00001, x=df$length)$par
+
+1 / mean(df$length)
+```
+
+Don't really care about $value.
+
+minimize likelihood function to estimate an unkown l

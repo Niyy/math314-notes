@@ -1,0 +1,32 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2)
+```
+
+F to be Exponential(lambda = 2)
+E[X] = 0.5
+V[X] = 0.5 ^ 2
+
+sample R sample means
+
+```{r}
+R <- 501
+N <- 1001
+samplemeans <- rep(NA, R)
+
+for (r in 1:R) 
+{
+  samplemeans[r] <- mean(rexp(N, 2))
+}
+
+df <- data.frame(x = samplemeans)
+ggplot(df, aes(x)) + geom_density()
+
+z <- sqrt(N) * (samplemeans - 0.5)
+mean(z)
+sd(z)
+```

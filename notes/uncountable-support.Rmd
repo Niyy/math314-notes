@@ -1,0 +1,28 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+# Plot PDF with uncountable support in R
+
+
+```{r}
+library(ggplot2)
+```
+
+Normal(3, 1.4 ^ 2)
+
+```{r}
+E <- 3
+V <- 1.4 ^ 2
+
+lb <- max(-Inf, E - 4 * sqrt(V)) #lb = lower_bounds
+ub <- min(Inf, E + 4 * sqrt(V))
+
+x <- seq(lb, ub, length.out = 501)
+head(x)
+
+fx <- dnorm(x, mean = E, sd = sqrt(V))
+
+df <- data.frame(x=x, fx = fx)
+ggplot(df, aes(x, fx)) + geom_line()
+```

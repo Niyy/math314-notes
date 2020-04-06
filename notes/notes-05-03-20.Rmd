@@ -1,0 +1,83 @@
+---
+title: "notes-05-03-20"
+author: "Austin Meyer"
+date: "3/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("ggplot2")
+library("plotly")
+```
+
+# Read in data set
+
+```{r}
+df <- read.csv("https://raw.githubusercontent.com/roualdes/data/master/droughts.csv")
+
+head(df)
+```
+
+* Discreate: Can take on only a specific amount of values (counting values)
+* Continuous: Can take on any value as it goes past infinity
+
+This will pull out the column with the name that is after ($)
+```{r}
+head(df$length)
+
+class(df$length)
+class(df)
+```
+
+We can estimate lamda as:
+```{r}
+1 / mean(df$length)
+```
+
+This means it will rain one day out of two days. Another way to state this is one rain event every two days.
+
+```{r}
+mean(df$length)
+```
+
+The expression above would be said: Every 2 days it will rain.
+
+## Fancy Plot
+
+```{r}
+x_plot <- ggplot(df, aes(x = length)) + geom_histogram(bins = 40)
+ggplot(df, aes(x = year)) + geom_histogram(bins = 21)
+# ggplotly(x_plot)
+```
+
+# Exponential
+
+There is a named function in r for randomly sampling for exponential.
+```{r}
+?rexp
+```
+
+# Normal Distribution
+
+```{r}
+x <- rnorm(1001)
+head(x)
+
+df <- data.frame(x = x)
+
+x_plot <- ggplot(df, aes(x)) + geom_density()
+```
+
+How many observations exist in between -2 and 2
+
+```{r}
+mean(x > -2 && x < 2)
+```
+
+Now add a function too our graph
+
+```{r}
+x_plot + stat_function(fun = dnorm, color = "orange")
+```
+

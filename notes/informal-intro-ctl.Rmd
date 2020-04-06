@@ -1,0 +1,35 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+N <- 1001
+x <- rexp(N, 2) #know that if I chose 2 the lambda of 2 will be 1/2
+
+df <- data.frame(x=x)
+ggplot(df, aes(x)) + geom_density()
+
+
+```
+
+Sample R sample means
+```{r}
+R <- 501
+
+samplemeans <-rep(NA, R)
+
+for(r in 1:R)
+{
+  samplemeans[r] <- mean(rexp(N, 2))
+}
+
+df <- data.frame(x = samplemeans)
+ggplot(df, aes(x)) + geom_density()
+```
+
+Central Limit therom is a phenominon about random variables, that says with very few constrictions will tend to follow the normal distro as long as you have a large sample size.

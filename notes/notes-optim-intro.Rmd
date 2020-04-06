@@ -1,0 +1,36 @@
+---
+title: "notes-optim"
+author: "Austin Meyer"
+date: "4/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+f <- function(x) 
+{
+  x ^ 2
+}
+
+optim(4, f, method="L-BFGS-B")
+```
+
+L = limited memory
+B(last) = bounded in case the argument to the function has bounds on it.
+BFGS = four dudes names
+
+$par = parameter
+ * holds the value that we were calling x*
+ 
+$value
+  * holds the evaluation of f at the min value
+  
+$counts
+  * how many steps it took to get to min value
+ 
+$convergence
+  * should be 0, if not you will get an error.
+
