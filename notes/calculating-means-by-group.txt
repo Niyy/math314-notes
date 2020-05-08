@@ -1,0 +1,4 @@
+goals:
+	Understand how R's lm() generalizes multiple means(numeric by categorical)
+
+
