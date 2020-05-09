@@ -19,7 +19,7 @@ fit_ints <- lm(beakwidth ~ island + middletoelength, data = df)
 beta_ints <- coef(fit_ints)
 
 X <- model.matrix(fit_ints)
-head(x)
+head(X)
 
 sum(beta_ints * X[1, ])
 sum(beta_ints * c(1, 0, 0, 20))
